@@ -1,155 +1,208 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Louis — Coming Soon</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LH Designs — Coming Soon</title>
 
-<style>
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:24px;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:
-    radial-gradient(1000px 600px at 20% 20%, rgba(255, 77, 77, 0.25), transparent 60%),
-    radial-gradient(900px 500px at 80% 30%, rgba(37, 99, 235, 0.22), transparent 55%),
-    linear-gradient(135deg, #0b1220, #121a2b);
-}
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 600px at 20% 20%, rgba(255, 77, 77, 0.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 30%, rgba(37, 99, 235, 0.20), transparent 55%),
+        linear-gradient(135deg, #0b1220, #121a2b);
+      color:#0f172a;
+    }
 
-.container{
-  position:relative;
-  width:min(760px, 95vw);
-  filter: drop-shadow(0 22px 45px rgba(0,0,0,0.35));
-}
+    .container{
+      position:relative;
+      width:min(760px, 95vw);
+      filter: drop-shadow(0 22px 45px rgba(0,0,0,0.35));
+    }
 
-.container img{
-  width:100%;
-  display:block;
-}
+    .container img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
 
-/* COMING SOON ABOVE HEAD */
-.top-badge{
-  position:absolute;
-  top:-40px;
-  left:50%;
-  transform:translateX(-50%);
-  background: linear-gradient(135deg,#d00000,#ff4d4d);
-  color:white;
-  padding:10px 18px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:14px;
-  letter-spacing:0.5px;
-  box-shadow:0 10px 25px rgba(208,0,0,0.4);
-}
+    /* Badge above head */
+    .top-badge{
+      position:absolute;
+      top:-38px;
+      left:50%;
+      transform:translateX(-50%);
+      background: linear-gradient(135deg,#d00000,#ff4d4d);
+      color:white;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:0.8px;
+      text-transform:uppercase;
+      box-shadow:0 10px 25px rgba(208,0,0,0.35);
+      white-space: nowrap;
+    }
 
-/* CONTENT ON SIGN */
-.card-content{
-  position:absolute;
-  left:50%;
-  top:74%;   /* lowered so name sits on card */
-  transform:translate(-50%, -50%);
-  width:60%;
-  text-align:center;
-  color:#0f172a;
-}
+    /* Content that sits ON the sign */
+    .card-content{
+      position:absolute;
+      left:50%;
+      top:76%;                 /* iPhone friendly baseline */
+      transform:translate(-50%, -50%);
+      width:62%;               /* pulled in to avoid fingers */
+      text-align:center;
+      color:#0f172a;
+      padding:10px 14px;
+    }
 
-h1{
-  margin:0 0 10px;
-  font-size: clamp(20px, 4.5vw, 28px);
-}
+    .brand{
+      margin:0;
+      font-weight:900;
+      letter-spacing:-0.6px;
+      font-size: clamp(20px, 4.9vw, 30px);
+      line-height:1.05;
+    }
 
-.subtitle{
-  font-size: clamp(12px, 3vw, 14px);
-  color:#334155;
-  line-height:1.3;
-  margin-bottom:14px;
-}
+    .tagline{
+      margin:8px auto 12px;
+      font-size: clamp(12px, 3.2vw, 15px);
+      color:#334155;
+      line-height:1.25;
+      max-width: 34ch;
+    }
 
-.list{
-  list-style:none;
-  padding:0;
-  margin:12px 0;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
-  font-size: clamp(11px, 3vw, 14px);
-}
+    .services{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
+      list-style:none;
+      padding:0;
+      margin:10px 0 14px;
+      font-size: clamp(11px, 3.0vw, 14px);
+    }
 
-.pill{
-  padding:6px 10px;
-  border-radius:999px;
-  background:#f1f5f9;
-  border:1px solid #e2e8f0;
-  font-weight:600;
-}
+    .pill{
+      padding:7px 10px;
+      border-radius:999px;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      font-weight:700;
+      white-space: nowrap;
+    }
 
-.btn{
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 16px;
-  border-radius:12px;
-  background:#111827;
-  color:white;
-  text-decoration:none;
-  font-weight:700;
-  font-size: clamp(11px, 3vw, 14px);
-  transition:0.2s ease;
-}
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
 
-.btn:hover{
-  transform:translateY(-2px);
-  opacity:0.9;
-}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
+      text-decoration:none;
+      font-size: clamp(11px, 3.0vw, 14px);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
 
-/* MOBILE ADJUSTMENTS */
-@media (max-width:520px){
-  .card-content{
-    top:76%;
-    width:66%;
-  }
+    .btn:hover{
+      transform: translateY(-2px);
+      opacity:0.95;
+    }
 
-  .top-badge{
-    top:-30px;
-    font-size:12px;
-    padding:8px 14px;
-  }
-}
-</style>
+    .btn-primary{
+      background: linear-gradient(135deg,#111827,#0b1220);
+      color:white;
+      box-shadow:0 10px 20px rgba(0,0,0,0.18);
+    }
+
+    .btn-ghost{
+      background:white;
+      color:#0f172a;
+      border:1px solid #e2e8f0;
+    }
+
+    .contact{
+      margin-top:10px;
+      font-size: clamp(10px, 2.7vw, 12px);
+      color:#64748b;
+      line-height:1.25;
+    }
+
+    .contact a{
+      color:#0f172a;
+      font-weight:800;
+      text-decoration:none;
+      border-bottom:1px solid rgba(15,23,42,0.25);
+    }
+    .contact a:hover{ border-bottom-color: rgba(15,23,42,0.55); }
+
+    /* iPhone tuning */
+    @media (max-width:520px){
+      .card-content{
+        top:78%;     /* pushes text down into the sign */
+        width:66%;   /* keeps it away from fingers */
+      }
+      .top-badge{
+        top:-30px;
+        padding:8px 14px;
+        font-size:12px;
+      }
+      .tagline{ max-width: 30ch; }
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
+    <div class="top-badge">Coming Soon</div>
 
-    <div class="top-badge">
-      COMING SOON
-    </div>
-
-    <img src="avatar.png" alt="Louis holding sign">
+    <img src="avatar.png" alt="LH Designs holding sign">
 
     <div class="card-content">
-      <h1>Louis Hamblin</h1>
+      <h1 class="brand">LH Designs</h1>
 
-      <p class="subtitle">
-        A professional holding page while I build something awesome.
+      <p class="tagline">
+        Graphic design & branding for businesses that want to look premium.
       </p>
 
-      <ul class="list">
-        <li class="pill">⚽ Football</li>
-        <li class="pill">🔴 Liverpool FC</li>
-        <li class="pill">💻 Tech</li>
+      <ul class="services">
+        <li class="pill">Brand Identity</li>
+        <li class="pill">Logos</li>
+        <li class="pill">Social Media</li>
+        <li class="pill">Print Design</li>
       </ul>
 
-      <a class="btn" href="https://www.liverpoolfc.com" target="_blank">
-        Liverpool FC →
-      </a>
-    </div>
+      <div class="cta-row">
+        <!-- Change the email to yours -->
+        <a class="btn btn-primary" href="mailto:hello@lhdesigns.co.uk?subject=Design%20Enquiry%20(From%20Website)">
+          Email Us
+        </a>
 
+        <!-- Replace # with your Instagram link when ready -->
+        <a class="btn btn-ghost" href="#" onclick="alert('Instagram link coming soon!'); return false;">
+          Instagram
+        </a>
+      </div>
+
+      <div class="contact">
+        Available for new projects • <a href="mailto:hello@lhdesigns.co.uk">hello@lhdesigns.co.uk</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
