@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Podcast | Lloyd &amp; Co. Financial Planning</title>
+
+<style>
+:root{
+  --green-950:#143c37;
+  --green-900:#1f4f49;
+  --green-850:#1b4742;
+  --cream:#f5efe3;
+  --text:#0c2f2b;
+
+  --shadow:0 16px 42px rgba(0,0,0,.14);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1220px,92vw);margin:0 auto}
+
+/* =========================
+   HEADER / NAV
+========================== */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 0;
+  color:#fff;
+}
+.brand a{display:flex;align-items:center;gap:10px}
+.brand img{height:70px;width:auto;display:block}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin:0;
+  padding:0;
+  font-weight:850;
+}
+nav a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 12px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+nav a:hover{background:rgba(255,255,255,.12)}
+
+.btn-login{
+  border:2px solid rgba(255,255,255,.55);
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:900;
+  display:inline-block;
+  white-space:nowrap;
+}
+.btn-login:hover{border-color:#fff}
+
+/* Mobile nav */
+.nav-toggle{
+  display:none;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  font-weight:900;
+  cursor:pointer;
+}
+@media (max-width: 980px){
+  .topbar{flex-wrap:wrap}
+  .nav-toggle{display:inline-flex}
+  nav{width:100%}
+  nav ul{
+    display:none;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    padding:10px 0 2px;
+  }
+  nav ul.show{display:flex}
+}
+
+/* =========================
+   PAGE HEADER
+========================== */
+.page-hero{padding:44px 0 18px}
+.page-title{
+  margin:0;
+  font-size:clamp(34px,4.6vw,54px);
+  font-weight:950;
+  color:#0d3b34;
+}
+.page-subtitle{
+  margin:12px 0 0;
+  font-weight:750;
+  opacity:.82;
+  line-height:1.6;
+  max-width:95ch;
+}
+
+/* =========================
+   PODCAST
+========================== */
+.podcast{padding:10px 0 70px}
+
+.player{
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+}
+.player-inner{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:0;
+}
+.player-main{
+  padding:22px;
+}
+.player-kicker{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  font-weight:900;
+}
+.player-kicker span{
+  width:32px;height:32px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.10);
+  border:1px solid rgba(255,255,255,.18);
+}
+.player h2{
+  margin:14px 0 8px;
+  font-size:1.55rem;
+  font-weight:950;
+  line-height:1.15;
+}
+.player p{
+  margin:0;
+  opacity:.92;
+  line-height:1.6;
+  font-weight:650;
+  max-width:80ch;
+}
+
+.audio-wrap{
+  margin-top:14px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:16px;
+  padding:12px;
+}
+audio{width:100%}
+
+.player-side{
+  padding:22px;
+  background:rgba(0,0,0,.08);
+  border-left:1px solid rgba(255,255,255,.12);
+}
+.side-title{
+  font-weight:950;
+  margin:0 0 10px;
+  font-size:1.15rem;
+}
+.platforms{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.platform{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  font-weight:900;
+}
+.platform:hover{background:rgba(255,255,255,.14)}
+.platform small{opacity:.85;font-weight:800}
+
+.grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+
+.episode{
+  grid-column:span 6;
+  background:#f7f6f2;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.episode:hover{transform:translateY(-2px);box-shadow:0 22px 55px rgba(0,0,0,.16)}
+.episode::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(31,79,73,.10) 0%, rgba(31,79,73,0) 45%);
+  pointer-events:none;
+}
+.ep-top{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.ep-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:.95rem;
+  background:rgba(31,79,73,.10);
+  color:#0d3b34;
+  border:1px solid rgba(31,79,73,.18);
+}
+.ep-meta{position:relative;font-weight:850;opacity:.72}
+.ep-title{
+  position:relative;
+  margin:12px 0 8px;
+  font-size:1.35rem;
+  font-weight:950;
+  color:#0d3b34;
+  line-height:1.15;
+}
+.ep-text{
+  position:relative;
+  margin:0;
+  line-height:1.65;
+  font-weight:650;
+  opacity:.92;
+}
+.ep-actions{
+  position:relative;
+  margin-top:12px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:950;
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+}
+.btn:hover{filter:brightness(1.05)}
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-weight:950;
+  color:#0d3b34;
+}
+.link span{
+  width:34px;height:34px;border-radius:999px;
+  background:rgba(31,79,73,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+}
+.link:hover span{background:rgba(31,79,73,.18)}
+
+@media (max-width: 980px){
+  .player-inner{grid-template-columns:1fr}
+  .player-side{border-left:0;border-top:1px solid rgba(255,255,255,.12)}
+  .episode{grid-column:span 12;}
+}
+
+/* =========================
+   FOOTER
+========================== */
+footer{
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  padding:48px 0 18px;
+  margin-top:28px;
+}
+.footer-toplinks{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+  font-weight:800;
+  opacity:.9;
+  margin-bottom:16px;
+}
+.footer-toplinks a{opacity:.95}
+.footer-toplinks a:hover{text-decoration:underline}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:36px;
+}
+.footer-left h3{
+  margin:0 0 12px;
+  font-weight:950;
+  font-size:1.6rem;
+}
+.socials{
+  display:flex;
+  gap:12px;
+  margin:10px 0 14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.social-btn{
+  width:34px;height:34px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+}
+.social-btn:hover{background:rgba(255,255,255,.16)}
+.footer-left p{
+  margin:8px 0;
+  line-height:1.6;
+  font-weight:650;
+  opacity:.9;
+  max-width:70ch;
+}
+.footer-right{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+  min-width:240px;
+}
+.footer-right img{
+  width:300px;
+  max-width:42vw;
+  height:auto;
+  display:block;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.18));
+}
+.footer-bottom{
+  text-align:center;
+  margin-top:26px;
+  font-weight:750;
+  opacity:.85;
+}
+@media(max-width:900px){
+  .footer-inner{flex-direction:column}
+  .footer-right{justify-content:flex-start}
+  .footer-toplinks{justify-content:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html" aria-label="Lloyd & Co Home">
+        <img src="fpweb.png" alt="Lloyd & Co. Financial Planning">
+      </a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+      Menu
+    </button>
+
+    <nav>
+      <ul id="mainNav">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="journey.html">The Journey</a></li>
+        <li><a href="mind.html">The Mind</a></li>
+        <li><a href="money.html">The Money</a></li>
+        <li><a href="treesources.html">Treesources</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn-login" href="clientlogin.html">Client Login</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">Podcast</h1>
+      <p class="page-subtitle">
+        A place for bite-sized conversations around planning, mindset, and money. Replace the placeholders with your real episodes and links.
+      </p>
+    </div>
+  </section>
+
+  <section class="podcast">
+    <div class="container">
+
+      <!-- FEATURED PLAYER -->
+      <div class="player" aria-label="Featured episode player">
+        <div class="player-inner">
+          <div class="player-main">
+            <div class="player-kicker">
+              <span aria-hidden="true">▶</span>
+              Featured Episode
+            </div>
+
+            <h2>Episode (placeholder): The Journey — where to start</h2>
+            <p>
+              Add your real featured episode here. You can host audio as an MP3 in your folder (e.g. <strong>audio/episode-01.mp3</strong>)
+              and set it as the <em>src</em> below, or embed Spotify/Apple later.
+            </p>
+
+            <div class="audio-wrap">
+              <!-- Put your MP3 in the folder and update the src -->
+              <audio controls preload="none">
+                <source src="audio/episode-01.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+
+          <aside class="player-side" aria-label="Podcast platforms">
+            <h3 class="side-title">Listen on</h3>
+            <div class="platforms">
+              <a class="platform" href="#" onclick="event.preventDefault();alert('Add your Spotify link here.');">
+                Spotify <small>Coming soon</small>
+              </a>
+              <a class="platform" href="#" onclick="event.preventDefault();alert('Add your Apple Podcasts link here.');">
+                Apple Podcasts <small>Coming soon</small>
+              </a>
+              <a class="platform" href="#" onclick="event.preventDefault();alert('Add your YouTube link here.');">
+                YouTube <small>Coming soon</small>
+              </a>
+              <a class="platform" href="treesources.html">
+                Back to Treesources <small>›</small>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- EPISODE LIST -->
+      <div class="grid" aria-label="Episode list">
+
+        <article class="episode">
+          <div class="ep-top">
+            <div class="ep-badge">Episode</div>
+            <div class="ep-meta">Placeholder date</div>
+          </div>
+          <h2 class="ep-title">Episode (placeholder): Goals and direction</h2>
+          <p class="ep-text">
+            A short description of the episode goes here. Keep it simple, friendly and clear.
+          </p>
+          <div class="ep-actions">
+            <a class="btn" href="#" onclick="event.preventDefault();alert('Link to audio / page / embed.');">Play</a>
+            <a class="link" href="#" onclick="event.preventDefault();alert('Link to show notes.');">Show notes <span>›</span></a>
+          </div>
+        </article>
+
+        <article class="episode">
+          <div class="ep-top">
+            <div class="ep-badge">Episode</div>
+            <div class="ep-meta">Placeholder date</div>
+          </div>
+          <h2 class="ep-title">Episode (placeholder): Planning topics explained</h2>
+          <p class="ep-text">
+            Use this area for a plain-English summary of what listeners will learn in the episode.
+          </p>
+          <div class="ep-actions">
+            <a class="btn" href="#" onclick="event.preventDefault();alert('Link to audio / page / embed.');">Play</a>
+            <a class="link" href="#" onclick="event.preventDefault();alert('Link to show notes.');">Show notes <span>›</span></a>
+          </div>
+        </article>
+
+        <article class="episode">
+          <div class="ep-top">
+            <div class="ep-badge">Episode</div>
+            <div class="ep-meta">Placeholder date</div>
+          </div>
+          <h2 class="ep-title">Episode (placeholder): Mindset and money</h2>
+          <p class="ep-text">
+            Replace this with the real episode description and add any relevant links.
+          </p>
+          <div class="ep-actions">
+            <a class="btn" href="#" onclick="event.preventDefault();alert('Link to audio / page / embed.');">Play</a>
+            <a class="link" href="#" onclick="event.preventDefault();alert('Link to show notes.');">Show notes <span>›</span></a>
+          </div>
+        </article>
+
+        <article class="episode">
+          <div class="ep-top">
+            <div class="ep-badge">Episode</div>
+            <div class="ep-meta">Placeholder date</div>
+          </div>
+          <h2 class="ep-title">Episode (placeholder): Tax year reminders</h2>
+          <p class="ep-text">
+            Quick pointers and reminders. Swap this text for your actual content when ready.
+          </p>
+          <div class="ep-actions">
+            <a class="btn" href="#" onclick="event.preventDefault();alert('Link to audio / page / embed.');">Play</a>
+            <a class="link" href="#" onclick="event.preventDefault();alert('Link to show notes.');">Show notes <span>›</span></a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-toplinks">
+      <a href="#">View Terms</a><span>|</span>
+      <a href="#">Privacy Policy</a><span>|</span>
+      <a href="#">Complaints Policy</a><span>|</span>
+      <a href="#">Slavery Statement</a>
+    </div>
+
+    <div class="footer-inner">
+      <div class="footer-left">
+        <h3>Follow us...</h3>
+
+        <div class="socials" aria-label="Social links">
+          <a class="social-btn" href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v8h3v-8h3l1-3h-4v-3c0-.6.4-1 1-1z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="X / Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M18.9 2H21l-6.6 7.5L22 22h-6.6l-4-5.2L6.8 22H3l7.1-8.2L2 2h6.7l3.6 4.7L18.9 2zm-2 18h1.8L7.1 4H5.2l11.7 16z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M17.5 6.5h.01"></path>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M4 3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zM4 8h4v13H4V8zm6 0h4v2c.6-1.1 2-2.4 4.3-2.4C21.7 7.6 23 9.8 23 13v8h-4v-7c0-1.7-.6-3-2.2-3-1.2 0-1.9.8-2.2 1.6-.1.3-.1.7-.1 1.1v7h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p>Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+        <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+          <img src="grouplogo.png" alt="Lloyd Group">
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 Lloyd &amp; Co. Financial Planning Ltd.</div>
+  </div>
+</footer>
+
+<script>
+/* MOBILE NAV TOGGLE */
+const navToggle = document.getElementById("navToggle");
+const nav = document.getElementById("mainNav");
+navToggle?.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("show");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+</script>
+
+</body>
+</html>

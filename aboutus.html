@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About Us | Lloyd & Co. Financial Planning</title>
+
+<style>
+:root{
+  --green-900:#1f4f49;
+  --green-850:#1b4742;
+  --cream:#f5efe3;
+  --text:#0c2f2b;
+  --white:#ffffff;
+  --shadow:0 14px 36px rgba(0,0,0,.14);
+  --radius:18px;
+
+  --card:#e9eee9;              /* NOT white */
+  --card-border:rgba(31,79,73,.18);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1200px,92vw);margin:0 auto}
+
+/* HEADER */
+header{
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  color:#fff;
+  padding:16px 0;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+.brand img{height:60px;width:auto;display:block}
+
+/* NAV */
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
+  font-weight:800;
+}
+nav a{padding:10px 12px;border-radius:999px}
+nav a:hover{background:rgba(255,255,255,.12)}
+.btn-login{
+  border:2px solid rgba(255,255,255,.6);
+  padding:10px 20px;
+  border-radius:999px;
+  font-weight:900;
+  display:inline-block;
+}
+.btn-login:hover{border-color:#fff}
+
+/* ABOUT US DROPDOWN */
+.nav-item{
+  position:relative;
+}
+.dropdown{
+  position:absolute;
+  top:44px;
+  left:0;
+  min-width:240px;
+  background:#f2ede2;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:16px;
+  box-shadow:0 18px 44px rgba(0,0,0,.18);
+  overflow:hidden;
+
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease;
+}
+.nav-item:hover .dropdown,
+.nav-item:focus-within .dropdown{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.dropdown a{
+  display:block;
+  padding:12px 14px;
+  font-weight:850;
+  color:#0d3b34;
+}
+.dropdown a:hover{
+  background:rgba(31,79,73,.10);
+}
+
+/* PAGE */
+.page{padding:60px 0 80px}
+.page h1{
+  font-size:2.5rem;
+  font-weight:950;
+  margin:0 0 22px;
+  color:#0d3b34;
+  text-align:center;
+}
+.page .sub{
+  text-align:center;
+  font-weight:750;
+  opacity:.7;
+  margin:0 0 40px;
+}
+
+/* LAYOUT */
+.grid{
+  display:grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap:28px;
+  align-items:start;
+}
+
+/* MAIN ABOUT CARD */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border:1px solid var(--card-border);
+  padding:26px;
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:14px;
+}
+.card-title h2{
+  margin:0;
+  font-size:1.6rem;
+  font-weight:950;
+  color:#0d3b34;
+}
+.tree-badge{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+.tree-badge img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.about-text{
+  line-height:1.75;
+  font-weight:650;
+  opacity:.92;
+  white-space:pre-line;
+}
+
+/* MONEY SIDE CARD */
+.side-title{
+  font-size:1.2rem;
+  font-weight:950;
+  margin:0 0 12px;
+  color:#0d3b34;
+  text-align:center;
+}
+.money-list{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.money-btn{
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(31,79,73,.16);
+  background:rgba(31,79,73,.10);
+  font-weight:900;
+  color:#0d3b34;
+}
+.money-btn:hover{background:rgba(31,79,73,.14)}
+
+/* DAVID SECTION */
+.section-title{
+  font-size:1.6rem;
+  font-weight:950;
+  margin:56px 0 26px;
+  color:#0d3b34;
+  text-align:center;
+  position:relative;
+}
+.section-title::after{
+  content:"";
+  display:block;
+  width:min(520px,70vw);
+  height:3px;
+  background:rgba(31,79,73,.15);
+  margin:14px auto 0;
+  border-radius:99px;
+}
+
+.david-wrap{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:26px;
+  align-items:start;
+}
+
+.david-photo{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  overflow:hidden;
+  border:10px solid rgba(31,79,73,.12);
+  background:rgba(31,79,73,.08);
+  margin:0 auto;
+}
+.david-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.david-name{
+  font-weight:950;
+  font-size:2rem;
+  margin:0;
+  color:#0d3b34;
+}
+.david-role{
+  margin:6px 0 16px;
+  font-weight:900;
+  opacity:.75;
+}
+
+.david-text{
+  line-height:1.75;
+  font-weight:650;
+  opacity:.92;
+  white-space:pre-line;
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  padding:60px 0 20px;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:40px;
+}
+.footer-left h3{
+  margin:0 0 16px;
+  font-weight:950;
+  font-size:1.6rem;
+}
+.footer-left p{
+  opacity:.9;
+  line-height:1.6;
+  margin:8px 0;
+  font-weight:650;
+}
+.footer-right img{width:240px;height:auto}
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  font-weight:700;
+  opacity:.85;
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  .topbar{flex-wrap:wrap;justify-content:center}
+  nav ul{flex-wrap:wrap;justify-content:center}
+  .grid{grid-template-columns:1fr}
+  .david-wrap{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html"><img src="fpweb.png" alt="Lloyd & Co"></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li class="nav-item">
+          <a href="about.html">About Us ▼</a>
+          <div class="dropdown" aria-label="About menu">
+            <a href="about.html">About Lloyd &amp; Co</a>
+            <a href="ourteam.html">Our Team</a>
+            <a href="technology.html">Our Technology</a>
+            <a href="careers.html">Careers at Lloyd &amp; Co</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </li>
+
+        <li><a href="journey.html">The Journey</a></li>
+        <li><a href="mind.html">The Mind</a></li>
+        <li><a href="money.html">The Money</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn-login" href="clientlogin.html">Client Login</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <h1>About Us</h1>
+    <p class="sub">Learn more about Lloyd &amp; Co. Financial Planning.</p>
+
+    <div class="grid">
+
+      <!-- WHO WE ARE -->
+      <section class="card">
+        <div class="card-title">
+          <div class="tree-badge">
+            <!-- this is the tree icon you sent -->
+            <img src="treeicon.png" alt="Tree icon">
+          </div>
+          <h2>Who We Are</h2>
+        </div>
+
+        <div class="about-text">
+Lloyd & Co. Financial Planning is situated on Hoghton Street Southport Merseyside. We are passionate about our profession. Our ethos is focused firmly on our clients happiness. We place our client’s hopes, goals and aspirations at the heart of our planning.
+
+Lloyd & Co was founded in 2009 by David Lloyd, David has many years’ experience within the financial services profession initially working for other organisations. Lloyd & Co was established as David felt that the profession had become stale, stuffy and boring. Everywhere he had worked the focus was to sell sell sell with sales targets that had to be met. At Lloyd & Co we will never have sales targets as dealing with clients lives is a privileged responsibility and should certainly not be sales driven. Our business is founded on the basis that we are all unique human beings with our own agendas in life. Our role is to assist you in making the right financial choices to facilitate what you want out of life, and never ever make things confusing!
+
+As an independent Financial practise based in Southport we offer independent financial advice (IFA) from the whole of market NOT just a chosen few. Our focus is on building long term client relationships, through the generations, and the delivery of quality advice. We aim to make complex issues clear and understandable, to listen to your needs and deliver what we say we will. It’s as simple as that.
+        </div>
+      </section>
+
+      <!-- MONEY -->
+      <aside class="card">
+        <h3 class="side-title">Money</h3>
+        <div style="text-align:center; font-weight:750; opacity:.8;">
+          Money is the currency of life, we will help you:
+        </div>
+
+        <div class="money-list">
+          <div class="money-btn">Get more of it</div>
+          <div class="money-btn">Understand it</div>
+          <div class="money-btn">Protect it</div>
+          <div class="money-btn">Spend it</div>
+          <div class="money-btn">Never run out of it</div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- DAVID -->
+    <div class="section-title">Managing Director</div>
+
+    <section class="card">
+      <div class="david-wrap">
+        <div>
+          <div class="david-photo">
+            <!-- this must be your circular david image -->
+            <img src="david.png" alt="David Lloyd">
+          </div>
+        </div>
+
+        <div>
+          <h2 class="david-name">David Lloyd</h2>
+          <div class="david-role">Chartered Independent Financial Adviser (IFA) • Managing Director</div>
+
+          <div class="david-text">
+David has 18 years of experience within financial advisory services and is qualified to Chartered status. This is an exclusive title awarded by the Chartered Insurance Institute. Chartered status is held by a minority of financial services professionals. When dealing with a Chartered adviser (IFA's) you can be confident that they have achieved the highest level of qualification.
+
+David is passionate about financial services and has the ability to explain often complex scenarios in an easy to understand way, making clients feel at ease. With a wealth of experience David provides advice to both corporate and private clients. Often working alongside other professional advisers David provides advice covering all areas of financial planning and financial advice.
+
+David is dedicated to the provision of independent advice as he believes best advice cannot be provided if the adviser is limited to a restricted number of products or providers. Lloyd & Co was established to provide a refreshing client led ethos. We invest as much time as is needed to ensure total client satisfaction is achieved.
+
+David is a member of the Business Networking International (BNI), and has close links with all professional bodies within the area. David is married to Emma, and has 4 magnificent children. In his limited amount of spare time he performs stand-up comedy and sleeps.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <h3>Follow us...</h3>
+      <p>Lloyd & Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+      <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+    </div>
+
+    <div class="footer-right">
+      <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+        <img src="grouplogo.png" alt="Lloyd Group">
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Lloyd & Co. Financial Planning Ltd.
+  </div>
+</footer>
+
+</body>
+</html>

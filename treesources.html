@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Treesources | Lloyd & Co. Financial Planning</title>
+
+<style>
+:root{
+  --green-900:#1f4f49;
+  --green-850:#1b4742;
+  --cream:#f5efe3;
+
+  --wood:#e6b86a;
+  --wood-text:#3b2a12;
+
+  --shadow:0 14px 36px rgba(0,0,0,.14);
+  --radius:18px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:#0c2f2b;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1200px,92vw);margin:0 auto}
+
+/* ===== HEADER (same as rest) ===== */
+header{
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  padding:16px 0;
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+.brand img{height:60px;width:auto;display:block}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  font-weight:800;
+}
+nav a{
+  padding:10px 12px;
+  border-radius:999px;
+  color:#fff;
+}
+nav a:hover{background:rgba(255,255,255,.12)}
+.btn-login{
+  border:2px solid rgba(255,255,255,.6);
+  padding:10px 20px;
+  border-radius:999px;
+  font-weight:900;
+  display:inline-block;
+  color:#fff;
+}
+.btn-login:hover{border-color:#fff}
+
+/* ===== PAGE LAYOUT ===== */
+main{padding:26px 0 0}
+
+.hero-frame{
+  position:relative;
+  width:min(1240px,94vw);
+  margin:0 auto;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 20px 55px rgba(0,0,0,.20);
+  background:#ddd;
+}
+
+/* image */
+.hero-frame img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* overlay content */
+.overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  padding:clamp(18px,3vw,34px);
+  pointer-events:none; /* only buttons clickable */
+}
+
+.left-stack{
+  width:min(430px,42%);
+  max-width:460px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  pointer-events:none;
+}
+
+/* Title like your mock (big brown, left) */
+.trees-title{
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform:uppercase;
+  font-weight:950;
+  letter-spacing:1px;
+  color:#5a3a18;
+  line-height:1;
+  font-size:clamp(42px,6vw,78px);
+  text-shadow:0 2px 0 rgba(255,255,255,.35);
+  margin-top:clamp(4px,1vw,10px);
+}
+
+/* Buttons list */
+.btn-list{
+  margin-top:6px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  width:min(320px,80%);
+  pointer-events:auto;
+}
+
+.wood-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:54px;
+  border-radius:999px;
+  background:var(--wood);
+  color:var(--wood-text);
+  font-weight:950;
+  font-size:1.25rem;
+  letter-spacing:.2px;
+
+  border:2px solid rgba(70,45,18,.18);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.18),
+    inset 0 2px 0 rgba(255,255,255,.45);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.wood-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.20),
+    inset 0 2px 0 rgba(255,255,255,.50);
+  filter:saturate(1.02);
+}
+.wood-btn:active{transform:translateY(0)}
+
+/* keyboard focus */
+.wood-btn:focus-visible{
+  outline:3px solid rgba(31,79,73,.55);
+  outline-offset:4px;
+}
+
+/* ===== FOOTER (your newer style) ===== */
+footer{
+  margin-top:28px;
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  padding:60px 0 20px;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:flex-start;
+}
+.footer-left h3{
+  margin:0 0 16px;
+  font-weight:950;
+  font-size:1.6rem;
+}
+.footer-left p{
+  opacity:.9;
+  line-height:1.6;
+  margin:8px 0;
+  font-weight:650;
+}
+.footer-right img{width:220px;height:auto}
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  font-weight:700;
+  opacity:.85;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px){
+  .topbar{flex-wrap:wrap;justify-content:center}
+  nav ul{flex-wrap:wrap;justify-content:center}
+
+  .overlay{padding:18px}
+  .left-stack{width:100%;max-width:520px}
+  .btn-list{width:min(340px,92%)}
+  .wood-btn{height:52px;font-size:1.15rem}
+
+  .footer-inner{flex-direction:column}
+}
+
+/* Extra small */
+@media (max-width: 520px){
+  .btn-list{gap:12px}
+  .wood-btn{height:50px;font-size:1.08rem}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html"><img src="fpweb.png" alt="Lloyd & Co"></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="journey.html">The Journey</a></li>
+        <li><a href="mind.html">The Mind</a></li>
+        <li><a href="money.html">The Money</a></li>
+        <li><a href="treesources.html">Treesources</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn-login" href="clientlogin.html">Client Login</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO IMAGE WITH LEFT TITLE + BUTTONS (like your mock) -->
+  <section class="hero-frame" aria-label="Treesources hero">
+    <img src="treesourcesbg.png" alt="Treesources illustration">
+    <div class="overlay">
+      <div class="left-stack">
+        <div class="trees-title">TREESOURCES</div>
+
+        <div class="btn-list" aria-label="Treesources links">
+          <a class="wood-btn" href="articles.html">Articles</a>
+          <a class="wood-btn" href="announcements.html">Announcements</a>
+          <a class="wood-btn" href="publications.html">Publications</a>
+          <a class="wood-btn" href="newsletters.html">Newsletters</a>
+          <a class="wood-btn" href="podcast.html">Podcast</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <h3>Follow us...</h3>
+      <p>Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+      <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+        <img src="grouplogo.png" alt="Lloyd Group">
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Lloyd &amp; Co. Financial Planning Ltd.
+  </div>
+</footer>
+
+</body>
+</html>

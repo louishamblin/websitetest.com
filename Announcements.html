@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Announcements | Lloyd &amp; Co. Financial Planning</title>
+
+<style>
+:root{
+  --green-950:#143c37;
+  --green-900:#1f4f49;
+  --green-850:#1b4742;
+  --cream:#f5efe3;
+  --text:#0c2f2b;
+
+  --shadow:0 16px 42px rgba(0,0,0,.14);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(1220px,92vw);margin:0 auto}
+
+/* =========================
+   HEADER / NAV
+========================== */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 0;
+  color:#fff;
+}
+.brand a{display:flex;align-items:center;gap:10px}
+.brand img{
+  height:70px;
+  width:auto;
+  display:block;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin:0;
+  padding:0;
+  font-weight:850;
+}
+nav a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 12px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+nav a:hover{background:rgba(255,255,255,.12)}
+
+.btn-login{
+  border:2px solid rgba(255,255,255,.55);
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:900;
+  display:inline-block;
+  white-space:nowrap;
+}
+.btn-login:hover{border-color:#fff}
+
+/* Mobile nav */
+.nav-toggle{
+  display:none;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  font-weight:900;
+  cursor:pointer;
+}
+@media (max-width: 980px){
+  .topbar{flex-wrap:wrap}
+  .nav-toggle{display:inline-flex}
+  nav{width:100%}
+  nav ul{
+    display:none;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    padding:10px 0 2px;
+  }
+  nav ul.show{display:flex}
+}
+
+/* =========================
+   PAGE HEADER
+========================== */
+.page-hero{
+  padding:44px 0 22px;
+}
+.page-title{
+  margin:0;
+  font-size:clamp(34px,4.6vw,54px);
+  font-weight:950;
+  color:#0d3b34;
+}
+.page-subtitle{
+  margin:12px 0 0;
+  font-weight:750;
+  opacity:.82;
+  line-height:1.6;
+  max-width:85ch;
+}
+
+/* =========================
+   ANNOUNCEMENTS LAYOUT
+========================== */
+.announcements{
+  padding:12px 0 70px;
+}
+
+.tools{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  margin:14px 0 22px;
+}
+
+.search{
+  flex:1 1 320px;
+  max-width:520px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:999px;
+  padding:10px 14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+.search input{
+  border:0;
+  outline:none;
+  width:100%;
+  font-size:1rem;
+  font-weight:700;
+  background:transparent;
+  color:#0c2f2b;
+}
+.search svg{opacity:.6}
+
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.chip{
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.60);
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:850;
+  cursor:pointer;
+  user-select:none;
+}
+.chip:hover{background:rgba(255,255,255,.85)}
+
+.list{
+  display:grid;
+  gap:18px;
+}
+
+.announce{
+  background:#f7f6f2;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:22px 22px 18px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.announce:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 55px rgba(0,0,0,.16);
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:.95rem;
+  background:rgba(31,79,73,.10);
+  color:#0d3b34;
+  border:1px solid rgba(31,79,73,.18);
+}
+
+.meta{
+  margin-top:10px;
+  font-weight:850;
+  opacity:.70;
+}
+
+.h2{
+  margin:10px 0 10px;
+  font-size:1.55rem;
+  font-weight:950;
+  color:#0d3b34;
+  line-height:1.15;
+}
+.text{
+  margin:0;
+  line-height:1.65;
+  font-weight:650;
+  opacity:.92;
+  max-width:95ch;
+}
+
+.actions{
+  margin-top:14px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-weight:950;
+  color:#0d3b34;
+}
+.link span{
+  width:34px;height:34px;
+  border-radius:999px;
+  background:rgba(31,79,73,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.1rem;
+}
+.link:hover span{background:rgba(31,79,73,.18)}
+
+.note{
+  font-weight:800;
+  opacity:.7;
+}
+
+/* =========================
+   FOOTER
+========================== */
+footer{
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  padding:48px 0 18px;
+  margin-top:28px;
+}
+.footer-toplinks{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+  font-weight:800;
+  opacity:.9;
+  margin-bottom:16px;
+}
+.footer-toplinks a{opacity:.95}
+.footer-toplinks a:hover{text-decoration:underline}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:36px;
+}
+.footer-left h3{
+  margin:0 0 12px;
+  font-weight:950;
+  font-size:1.6rem;
+}
+.socials{
+  display:flex;
+  gap:12px;
+  margin:10px 0 14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.social-btn{
+  width:34px;height:34px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+}
+.social-btn:hover{background:rgba(255,255,255,.16)}
+.footer-left p{
+  margin:8px 0;
+  line-height:1.6;
+  font-weight:650;
+  opacity:.9;
+  max-width:70ch;
+}
+.footer-right{
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+  min-width:240px;
+}
+.footer-right img{
+  width:300px;
+  max-width:42vw;
+  height:auto;
+  display:block;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.18));
+}
+.footer-bottom{
+  text-align:center;
+  margin-top:26px;
+  font-weight:750;
+  opacity:.85;
+}
+@media(max-width:900px){
+  .footer-inner{flex-direction:column}
+  .footer-right{justify-content:flex-start}
+  .footer-toplinks{justify-content:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html" aria-label="Lloyd & Co Home">
+        <img src="fpweb.png" alt="Lloyd & Co. Financial Planning">
+      </a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav">
+      Menu
+    </button>
+
+    <nav>
+      <ul id="mainNav">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="journey.html">The Journey</a></li>
+        <li><a href="mind.html">The Mind</a></li>
+        <li><a href="money.html">The Money</a></li>
+        <li><a href="treesources.html">Treesources</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn-login" href="clientlogin.html">Client Login</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">Announcements</h1>
+      <p class="page-subtitle">
+        Updates from Lloyd &amp; Co. Financial Planning — office information, service updates and important notices.
+      </p>
+    </div>
+  </section>
+
+  <section class="announcements">
+    <div class="container">
+
+      <div class="tools">
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="M20 20l-3.5-3.5"></path>
+          </svg>
+          <input id="searchInput" type="text" placeholder="Search announcements..." />
+        </div>
+
+        <div class="filters" aria-label="Quick filters">
+          <div class="chip" data-filter="all">All</div>
+          <div class="chip" data-filter="office">Office</div>
+          <div class="chip" data-filter="service">Service</div>
+          <div class="chip" data-filter="event">Events</div>
+        </div>
+      </div>
+
+      <div class="list" id="announceList">
+
+        <article class="announce" data-tags="office">
+          <div class="badge">Office</div>
+          <div class="meta">Updated • Placeholder date</div>
+          <h2 class="h2">Office opening hours</h2>
+          <p class="text">
+            Monday to Thursday 9am – 5pm • Friday 9am – 4pm • Saturday closed • Sunday closed.
+          </p>
+          <div class="actions">
+            <a class="link" href="contact.html">View contact page <span>›</span></a>
+          </div>
+        </article>
+
+        <article class="announce" data-tags="service">
+          <div class="badge">Service</div>
+          <div class="meta">Updated • Placeholder date</div>
+          <h2 class="h2">Client portal reminder</h2>
+          <p class="text">
+            If you have any issues accessing the client area, please use the “Client Login” button at the top of the site.
+            If you need help, contact the office and we’ll support you.
+          </p>
+          <div class="actions">
+            <a class="link" href="clientlogin.html">Go to client login <span>›</span></a>
+            <span class="note">Tip: We can add “Forgot password?” and help text here later.</span>
+          </div>
+        </article>
+
+        <article class="announce" data-tags="event">
+          <div class="badge">Events</div>
+          <div class="meta">Updated • Placeholder date</div>
+          <h2 class="h2">Upcoming client updates</h2>
+          <p class="text">
+            We’ll be sharing regular updates through Treesources. Keep an eye on Articles, Newsletters and Publications.
+          </p>
+          <div class="actions">
+            <a class="link" href="treesources.html">Back to Treesources <span>›</span></a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-toplinks">
+      <a href="#">View Terms</a><span>|</span>
+      <a href="#">Privacy Policy</a><span>|</span>
+      <a href="#">Complaints Policy</a><span>|</span>
+      <a href="#">Slavery Statement</a>
+    </div>
+
+    <div class="footer-inner">
+      <div class="footer-left">
+        <h3>Follow us...</h3>
+
+        <div class="socials" aria-label="Social links">
+          <a class="social-btn" href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v8h3v-8h3l1-3h-4v-3c0-.6.4-1 1-1z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="X / Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M18.9 2H21l-6.6 7.5L22 22h-6.6l-4-5.2L6.8 22H3l7.1-8.2L2 2h6.7l3.6 4.7L18.9 2zm-2 18h1.8L7.1 4H5.2l11.7 16z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M17.5 6.5h.01"></path>
+            </svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M4 3c0 1.1.9 2 2 2s2-.9 2-2-.9-2-2-2-2 .9-2 2zM4 8h4v13H4V8zm6 0h4v2c.6-1.1 2-2.4 4.3-2.4C21.7 7.6 23 9.8 23 13v8h-4v-7c0-1.7-.6-3-2.2-3-1.2 0-1.9.8-2.2 1.6-.1.3-.1.7-.1 1.1v7h-4V8z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p>Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+        <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+          <img src="grouplogo.png" alt="Lloyd Group">
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 Lloyd &amp; Co. Financial Planning Ltd.</div>
+  </div>
+</footer>
+
+<script>
+/* MOBILE NAV TOGGLE */
+const navToggle = document.getElementById("navToggle");
+const nav = document.getElementById("mainNav");
+
+navToggle?.addEventListener("click", () => {
+  const isOpen = nav.classList.toggle("show");
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+/* SIMPLE FILTER + SEARCH */
+const input = document.getElementById("searchInput");
+const list = document.getElementById("announceList");
+const items = Array.from(list.querySelectorAll(".announce"));
+const chips = Array.from(document.querySelectorAll(".chip"));
+
+let activeFilter = "all";
+
+function applyFilters(){
+  const q = (input.value || "").trim().toLowerCase();
+
+  items.forEach(item => {
+    const tags = (item.getAttribute("data-tags") || "").toLowerCase();
+    const title = (item.querySelector(".h2")?.innerText || "").toLowerCase();
+    const text = (item.querySelector(".text")?.innerText || "").toLowerCase();
+
+    const matchesSearch = !q || title.includes(q) || text.includes(q);
+    const matchesFilter = activeFilter === "all" || tags.includes(activeFilter);
+
+    item.style.display = (matchesSearch && matchesFilter) ? "" : "none";
+  });
+}
+
+input?.addEventListener("input", applyFilters);
+
+chips.forEach(chip => {
+  chip.addEventListener("click", () => {
+    activeFilter = chip.getAttribute("data-filter") || "all";
+    chips.forEach(c => c.style.background = "rgba(255,255,255,.60)");
+    chip.style.background = "rgba(255,255,255,.92)";
+    applyFilters();
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Our Team | Lloyd & Co. Financial Planning</title>
+
+<style>
+:root{
+  --green-900:#1f4f49;
+  --green-850:#1b4742;
+  --cream:#f5efe3;
+  --text:#0c2f2b;
+  --white:#ffffff;
+  --shadow:0 14px 36px rgba(0,0,0,.14);
+  --radius:18px;
+  --card:#e9eee9;
+  --card-border:rgba(31,79,73,.18);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1200px,92vw);margin:0 auto}
+
+/* HEADER */
+header{
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  color:#fff;
+  padding:16px 0;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+.brand img{height:60px;width:auto;display:block}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
+  font-weight:800;
+}
+nav a{padding:10px 12px;border-radius:999px}
+nav a:hover{background:rgba(255,255,255,.12)}
+.btn-login{
+  border:2px solid rgba(255,255,255,.6);
+  padding:10px 20px;
+  border-radius:999px;
+  font-weight:900;
+  display:inline-block;
+}
+.btn-login:hover{border-color:#fff}
+
+/* PAGE */
+.page{padding:60px 0 80px}
+.page h1{
+  font-size:2.5rem;
+  font-weight:950;
+  margin:0 0 22px;
+  color:#0d3b34;
+  text-align:center;
+}
+.page .sub{
+  text-align:center;
+  font-weight:750;
+  opacity:.7;
+  margin:0 0 40px;
+}
+
+/* SECTION TITLES */
+.section-title{
+  font-size:1.6rem;
+  font-weight:950;
+  margin:56px 0 26px;
+  color:#0d3b34;
+  text-align:center;
+  position:relative;
+}
+.section-title::after{
+  content:"";
+  display:block;
+  width:min(520px,70vw);
+  height:3px;
+  background:rgba(31,79,73,.15);
+  margin:14px auto 0;
+  border-radius:99px;
+}
+
+/* TEAM GRID */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:28px;
+  justify-items:center;
+}
+
+/* TEAM CARD */
+.team-card{
+  width:100%;
+  max-width:340px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border:1px solid var(--card-border);
+  text-align:center;
+  padding:22px 22px 18px;
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.team-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 44px rgba(0,0,0,.16);
+}
+.team-card:active{transform:translateY(0)}
+
+.team-photo{
+  width:170px;
+  height:170px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  overflow:hidden;
+  border:8px solid rgba(31,79,73,.10);
+  background:rgba(31,79,73,.08);
+}
+.team-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.team-name{font-weight:950;font-size:1.1rem}
+.team-role{font-weight:800;opacity:.75;margin-top:4px}
+
+/* SPECIAL: Advisers grid (3 then staggered 2) */
+.team-grid.advisers{
+  grid-template-columns:repeat(3, minmax(240px, 1fr));
+}
+
+/* Natasha sits between Joe & Beth */
+.team-grid.advisers .team-card:nth-child(4){
+  grid-column:1 / 3;
+  justify-self:center;
+}
+
+/* Ewan sits between Beth & Jess */
+.team-grid.advisers .team-card:nth-child(5){
+  grid-column:2 / 4;
+  justify-self:center;
+}
+
+/* MODAL BIO */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:200;
+}
+.modal{
+  width:min(920px,96vw);
+  background:#f2ede2;
+  border-radius:18px;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.08);
+}
+.modal-header{
+  background:linear-gradient(0deg,var(--green-850),var(--green-900));
+  color:#fff;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-weight:950;
+}
+.modal-close{
+  width:38px;height:38px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+.modal-body{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:18px;
+  padding:18px;
+}
+.modal-photo{
+  width:240px;height:240px;
+  border-radius:50%;
+  overflow:hidden;
+  border:10px solid rgba(31,79,73,.12);
+  background:rgba(31,79,73,.08);
+  margin:0 auto;
+}
+.modal-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.modal-name{font-weight:950;font-size:1.35rem;margin:0;color:#0d3b34}
+.modal-role{margin:6px 0 0;font-weight:850;opacity:.75}
+.modal-text{
+  margin-top:14px;
+  line-height:1.65;
+  font-weight:650;
+  opacity:.92;
+  white-space:pre-line;
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(135deg,#1f4f49,#163d38);
+  color:#fff;
+  padding:60px 0 20px;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:40px;
+}
+.footer-left h3{
+  margin:0 0 16px;
+  font-weight:950;
+  font-size:1.6rem;
+}
+.footer-left p{
+  opacity:.9;
+  line-height:1.6;
+  margin:8px 0;
+  font-weight:650;
+}
+.footer-right img{width:240px;height:auto}
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  font-weight:700;
+  opacity:.85;
+}
+
+/* Responsive */
+@media(max-width:980px){
+  .topbar{flex-wrap:wrap;justify-content:center}
+  nav ul{flex-wrap:wrap;justify-content:center}
+
+  /* Advisers grid collapses nicely */
+  .team-grid.advisers{
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  }
+  .team-grid.advisers .team-card:nth-child(4),
+  .team-grid.advisers .team-card:nth-child(5){
+    grid-column:auto;
+    justify-self:stretch;
+  }
+
+  .modal-body{grid-template-columns:1fr}
+  .modal-photo{width:220px;height:220px}
+  .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html"><img src="fpweb.png" alt="Lloyd & Co"></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="journey.html">The Journey</a></li>
+        <li><a href="mind.html">The Mind</a></li>
+        <li><a href="money.html">The Money</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn-login" href="clientlogin.html">Client Login</a>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <h1>Meet the Team</h1>
+    <p class="sub">Click a team member to view their biography.</p>
+
+    <!-- Managing Director -->
+    <div class="section-title">Managing Director</div>
+    <div class="team-grid">
+      <div class="team-card"
+        data-name="David Lloyd"
+        data-role="Managing Director"
+        data-img="david.png"
+        data-bio="David has 18 years of experience within financial advisory services and is qualified to Chartered status. This is an exclusive title awarded by the Chartered Insurance Institute. Chartered status is held by a minority of financial services professionals. When dealing with a Chartered adviser (IFA's) you can be confident that they have achieved the highest level of qualification.
+
+David is passionate about financial services and has the ability to explain often complex scenarios in an easy to understand way, making clients feel at ease. With a wealth of experience David provides advice to both corporate and private clients. Often working alongside other professional advisers David provides advice covering all areas of financial planning and financial advice.
+
+David is dedicated to the provision of independent advice as he believes best advice cannot be provided if the adviser is limited to a restricted number of products or providers. Lloyd & Co was established to provide a refreshing client led ethos. We invest as much time as is needed to ensure total client satisfaction is achieved.
+
+David has close links with all professional bodies within the area. David is married to Emma, and has 4 magnificent children. In his limited amount of spare time he performs stand-up comedy and sleeps.">
+        <div class="team-photo">
+          <img src="david.png" alt="David Lloyd">
+        </div>
+        <div class="team-name">David Lloyd</div>
+        <div class="team-role">Managing Director</div>
+      </div>
+    </div>
+
+    <!-- Managers -->
+    <div class="section-title">Managers</div>
+    <div class="team-grid">
+      <div class="team-card" data-name="Phillip Jones" data-role="Operations Manager" data-img="phill.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="phill.png" alt="Phillip Jones"></div>
+        <div class="team-name">Phillip Jones</div>
+        <div class="team-role">Operations Manager</div>
+      </div>
+
+      <div class="team-card" data-name="Faith Clements" data-role="Client Journey Manager" data-img="faith.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="faith.png" alt="Faith Clements"></div>
+        <div class="team-name">Faith Clements</div>
+        <div class="team-role">Client Journey Manager</div>
+      </div>
+
+      <div class="team-card" data-name="Louis Hamblin" data-role="Marketing Manager" data-img="louis.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="louis.png" alt="Louis Hamblin"></div>
+        <div class="team-name">Louis Hamblin</div>
+        <div class="team-role">Marketing Manager</div>
+      </div>
+    </div>
+
+    <!-- Independent Financial Advisers -->
+    <div class="section-title">Independent Financial Advisers</div>
+
+    <!-- IMPORTANT: order matters here -->
+    <div class="team-grid advisers">
+
+      <!-- Row 1 -->
+      <div class="team-card" data-name="Joe Lloyd" data-role="Independent Financial Adviser" data-img="joe.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="joe.png" alt="Joe Lloyd"></div>
+        <div class="team-name">Joe Lloyd</div>
+        <div class="team-role">Independent Financial Adviser</div>
+      </div>
+
+      <div class="team-card" data-name="Beth Rigby" data-role="Independent Financial Adviser" data-img="beth.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="beth.png" alt="Beth Rigby"></div>
+        <div class="team-name">Beth Rigby</div>
+        <div class="team-role">Independent Financial Adviser</div>
+      </div>
+
+      <div class="team-card" data-name="Jessica Eld" data-role="Independent Financial Adviser" data-img="Jess.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="Jess.png" alt="Jessica Eld"></div>
+        <div class="team-name">Jessica Eld</div>
+        <div class="team-role">Independent Financial Adviser</div>
+      </div>
+
+      <!-- Row 2 (staggered between) -->
+      <div class="team-card" data-name="Natasha Baynes" data-role="Independent Financial Adviser" data-img="tash.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="tash.png" alt="Natasha Baynes"></div>
+        <div class="team-name">Natasha Baynes</div>
+        <div class="team-role">Independent Financial Adviser</div>
+      </div>
+
+      <div class="team-card" data-name="Ewan Will" data-role="Independent Financial Adviser" data-img="ewan.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="ewan.png" alt="Ewan Will"></div>
+        <div class="team-name">Ewan Will</div>
+        <div class="team-role">Independent Financial Adviser</div>
+      </div>
+
+    </div>
+
+    <!-- Administrators -->
+    <div class="section-title">Administrators</div>
+    <div class="team-grid">
+
+      <div class="team-card" data-name="Jane Usher" data-role="Administrator" data-img="jane.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="jane.png" alt="Jane Usher"></div>
+        <div class="team-name">Jane Usher</div>
+        <div class="team-role">Administrator</div>
+      </div>
+
+      <div class="team-card" data-name="Olivia Sproat" data-role="Administrator" data-img="liv.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="liv.png" alt="Olivia Sproat"></div>
+        <div class="team-name">Olivia Sproat</div>
+        <div class="team-role">Administrator</div>
+      </div>
+
+      <div class="team-card" data-name="Alice Ryan" data-role="Administrator" data-img="Alice.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="Alice.png" alt="Alice Ryan"></div>
+        <div class="team-name">Alice Ryan</div>
+        <div class="team-role">Administrator</div>
+      </div>
+
+      <div class="team-card" data-name="Chloe Lowery" data-role="Administrator" data-img="Chloe.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="Chloe.png" alt="Chloe Lowery"></div>
+        <div class="team-name">Chloe Lowery</div>
+        <div class="team-role">Administrator</div>
+      </div>
+
+      <div class="team-card" data-name="Layla Nicholson" data-role="Receptionist" data-img="Layla.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="Layla.png" alt="Layla Nicholson"></div>
+        <div class="team-name">Layla Nicholson</div>
+        <div class="team-role">Receptionist</div>
+      </div>
+
+      <div class="team-card" data-name="Ruby Verinder-Dyas" data-role="Receptionist" data-img="Ruby.png" data-bio="Biography coming soon.">
+        <div class="team-photo"><img src="Ruby.png" alt="Ruby Verinder-Dyas"></div>
+        <div class="team-name">Ruby Verinder-Dyas</div>
+        <div class="team-role">Receptionist</div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- BIO MODAL -->
+<div class="modal-backdrop" id="bioBackdrop" role="dialog" aria-modal="true" aria-label="Team biography">
+  <div class="modal">
+    <div class="modal-header">
+      <div>Biography</div>
+      <button class="modal-close" id="bioClose" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-photo">
+        <img id="bioImg" src="" alt="">
+      </div>
+      <div>
+        <h2 class="modal-name" id="bioName"></h2>
+        <div class="modal-role" id="bioRole"></div>
+        <div class="modal-text" id="bioText"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <h3>Follow us...</h3>
+      <p>Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+      <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+        <img src="grouplogo.png" alt="Lloyd Group">
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Lloyd &amp; Co. Financial Planning Ltd.
+  </div>
+</footer>
+
+<script>
+  const backdrop = document.getElementById("bioBackdrop");
+  const closeBtn = document.getElementById("bioClose");
+
+  const bioImg  = document.getElementById("bioImg");
+  const bioName = document.getElementById("bioName");
+  const bioRole = document.getElementById("bioRole");
+  const bioText = document.getElementById("bioText");
+
+  function openBio(card){
+    bioImg.src = card.dataset.img || "";
+    bioImg.alt = card.dataset.name || "Team member";
+    bioName.textContent = card.dataset.name || "";
+    bioRole.textContent = card.dataset.role || "";
+    bioText.textContent = card.dataset.bio || "Biography coming soon.";
+    backdrop.style.display = "flex";
+  }
+  function closeBio(){ backdrop.style.display = "none"; }
+
+  document.querySelectorAll(".team-card").forEach(card=>{
+    card.addEventListener("click", ()=>openBio(card));
+    card.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openBio(card); }
+    });
+    card.tabIndex = 0;
+  });
+
+  closeBtn.addEventListener("click", closeBio);
+  backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeBio(); });
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeBio(); });
+</script>
+
+</body>
+</html>

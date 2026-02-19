@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us | Lloyd & Co. Financial Planning</title>
+
+  <style>
+    :root{
+      --green-900:#1f4f49;
+      --green-850:#1b4742;
+      --cream:#f5efe3;
+      --panel:#ffffffcc;
+      --text:#0c2f2b;
+      --white:#ffffff;
+      --shadow:0 18px 55px rgba(0,0,0,.12);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--cream); color:var(--text); }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1200px,92vw); margin:0 auto; }
+
+    /* ================= HEADER ================= */
+    header{
+      background: linear-gradient(0deg, var(--green-850), var(--green-900));
+      color: var(--white);
+      position: sticky;
+      top:0;
+      z-index: 50;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    }
+    .topbar{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap: 14px;
+      padding: 16px 0;
+    }
+    .brand img{
+      display:block;
+      height:44px;
+      width:auto;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap: 26px;
+      padding:0;
+      margin:0;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+    }
+    nav a{
+      opacity:.95;
+      padding: 12px 14px;
+      border-radius: 999px;
+      white-space:nowrap;
+      display:inline-block;
+    }
+    nav a:hover{ background: rgba(255,255,255,.12); }
+
+    .actions{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .btn-login{
+      border: 2px solid rgba(255,255,255,.65);
+      background: transparent;
+      color: var(--white);
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-weight: 1000;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn-login:hover{ border-color:#fff; }
+
+    /* About dropdown (same as home) */
+    .nav-item{ position:relative; }
+    .nav-item > a{ padding:12px 14px; }
+
+    .dropdown{
+      position:absolute;
+      top:100%;
+      left:50%;
+      transform:translateX(-50%) translateY(10px);
+      background:rgba(255,255,255,.98);
+      color:#0c2f2b;
+      border-radius:14px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+      min-width:260px;
+      padding:10px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index:200;
+    }
+    .dropdown::before{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      top:-12px;
+      height:12px;
+    }
+    .dropdown a{
+      display:block;
+      padding:11px 12px;
+      border-radius:12px;
+      font-weight:900;
+    }
+    .dropdown a:hover{ background: rgba(31,79,73,.10); }
+
+    .nav-item:hover .dropdown,
+    .dropdown:hover{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    /* ================= PAGE ================= */
+    .page{
+      padding: 56px 0 70px;
+    }
+    .page h1{
+      text-align:center;
+      font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+      margin: 0 0 10px;
+      font-weight: 1000;
+      color:#0d3b34;
+    }
+    .page .sub{
+      text-align:center;
+      margin:0 0 34px;
+      font-weight: 800;
+      opacity:.85;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card{
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+      padding: 22px;
+    }
+    .card h2{
+      margin:0 0 12px;
+      font-weight:1000;
+      color:#0d3b34;
+      font-size: 1.5rem;
+    }
+
+    .info p{
+      margin: 0 0 10px;
+      line-height:1.6;
+      font-weight:850;
+      opacity:.92;
+    }
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-block;
+      background: var(--green-900);
+      color:#fff;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 1000;
+      border: 0;
+      cursor:pointer;
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); opacity:.95; }
+
+    .btn-ghost{
+      background: transparent;
+      color: var(--green-900);
+      border: 2px solid rgba(31,79,73,.35);
+    }
+    .btn-ghost:hover{ background: rgba(31,79,73,.08); }
+
+    .map-embed{
+      width:100%;
+      height: 360px;
+      border:0;
+      border-radius: 18px;
+      overflow:hidden;
+    }
+
+    /* ================= FORM (like your mock) ================= */
+    .form-wrap{
+      background: linear-gradient(180deg, rgba(31,79,73,.92), rgba(27,71,66,.92));
+      border-radius: 22px;
+      padding: 28px 24px 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .form-title{
+      color:#fff;
+      text-align:center;
+      font-weight:1000;
+      font-size: 2rem;
+      margin: 4px 0 18px;
+      letter-spacing: .2px;
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .field,
+    .textarea{
+      width:100%;
+      background: #fbf6e6;
+      border: 2px solid rgba(255,255,255,.18);
+      border-radius: 10px;
+      padding: 14px 14px;
+      font-size: 1.05rem;
+      text-align:center;
+      outline:none;
+      color:#10322e;
+      font-weight: 900;
+    }
+    .field::placeholder,
+    .textarea::placeholder{
+      color: rgba(16,50,46,.65);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .full{ grid-column: 1 / -1; }
+    .textarea{
+      height: 210px;
+      resize: vertical;
+      text-align:left;
+      font-weight: 800;
+    }
+    .form-actions{
+      margin-top: 16px;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+
+    /* ================= FOOTER (same style as home) ================= */
+    .site-footer{
+      background: linear-gradient(0deg, var(--green-850), var(--green-900));
+      color:#fff;
+      padding: 30px 0 18px;
+      margin-top: 44px;
+    }
+    .footer-wrap{
+      width:min(1200px,92vw);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items:center;
+    }
+    .follow-row{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .follow-title{
+      font-size: 2rem;
+      font-weight: 1000;
+      letter-spacing:-.5px;
+    }
+    .social{ display:flex; gap: 12px; align-items:center; }
+    .icon-btn{
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(255,255,255,.18);
+      transition:.2s ease;
+    }
+    .icon-btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.16); }
+    .icon-btn svg{ width: 20px; height: 20px; fill: #fff; opacity:.95; }
+
+    .stars{ display:flex; gap: 4px; align-items:center; margin-left: 8px; }
+    .star{
+      width: 28px; height: 28px;
+      background: #00b67a;
+      display:grid;
+      place-items:center;
+      border-radius: 3px;
+    }
+    .star svg{ width: 18px; height: 18px; fill:#fff; }
+
+    .footer-copy{
+      font-weight: 850;
+      opacity:.95;
+      line-height:1.45;
+      font-size: .95rem;
+      max-width: 620px;
+    }
+    .footer-links{
+      margin-top: 10px;
+      font-weight: 900;
+      opacity:.95;
+      display:flex;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .footer-links a:hover{ text-decoration: underline; }
+
+    .group-image-link{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      width:100%;
+    }
+    .group-image-link img{
+      max-width: 520px;
+      width:100%;
+      height:auto;
+      transition: transform .2s ease;
+    }
+    .group-image-link:hover img{ transform: translateY(-2px); }
+
+    .copyright{
+      text-align:center;
+      margin-top: 20px;
+      font-weight: 850;
+      opacity:.9;
+    }
+
+    @media (max-width: 980px){
+      .topbar{ grid-template-columns: 1fr auto; grid-template-areas:"brand actions" "nav nav"; }
+      .brand{ grid-area: brand; }
+      .actions{ grid-area: actions; }
+      nav{ grid-area: nav; }
+      nav ul{ gap: 14px; justify-content:flex-start; overflow:auto; padding-bottom: 6px; }
+
+      .grid{ grid-template-columns: 1fr; }
+      .form-grid{ grid-template-columns: 1fr; }
+
+      .footer-wrap{ grid-template-columns: 1fr; text-align:center; }
+      .group-image-link{ justify-content:center; }
+      .follow-row{ justify-content:center; }
+      .stars{ justify-content:center; }
+      .footer-links{ justify-content:center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <a href="index.html"><img src="fpweb.png" alt="Lloyd & Co Financial Planning" /></a>
+      </div>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li class="nav-item">
+            <a href="about.html">About Us ▾</a>
+            <div class="dropdown">
+              <a href="about.html">About Lloyd &amp; Co</a>
+              <a href="team.html">Our Team</a>
+              <a href="technology.html">Our Technology</a>
+              <a href="careers.html">Careers at Lloyd &amp; Co</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+          </li>
+          <li><a href="journey.html">The Journey</a></li>
+          <li><a href="mind.html">The Mind</a></li>
+          <li><a href="money.html">The Money</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <a class="btn-login" href="clientlogin.html">Client Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p class="sub">Get in touch with Lloyd &amp; Co. Financial Planning — we’re here to help.</p>
+
+      <!-- TOP: Contact info + Map -->
+      <div class="grid">
+        <section class="card info" aria-label="Contact information">
+          <h2>Contact Information</h2>
+          <p><strong>Address:</strong> 26 Hoghton Street, Southport, Merseyside, PR9 0PA</p>
+          <p><strong>Phone:</strong> 01704 443 107</p>
+          <p><strong>Email:</strong> info@lloydfp.co.uk</p>
+
+          <h2 style="margin-top:18px;">Office Times</h2>
+          <p><strong>Monday–Thursday:</strong> 9am – 5pm</p>
+          <p><strong>Friday:</strong> 9am – 4pm</p>
+          <p><strong>Saturday:</strong> Closed</p>
+          <p><strong>Sunday:</strong> Closed</p>
+
+          <div class="pill-row">
+            <a class="btn" href="https://maps.app.goo.gl/fu2Vj8M6ht9M64Jf7" target="_blank" rel="noopener">Open in Google Maps</a>
+            <a class="btn btn-ghost" href="mailto:info@lloydfp.co.uk">Email Us</a>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Find us map">
+          <h2>Find Us</h2>
+          <iframe
+            class="map-embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=26%20Hoghton%20Street%20Southport%20PR9%200PA&output=embed">
+          </iframe>
+        </section>
+      </div>
+
+      <!-- BELOW: Form (like your mockup) -->
+      <section style="margin-top:22px;" aria-label="Send us a message form">
+        <div class="form-wrap">
+          <div class="form-title">Send us a message</div>
+
+          <form onsubmit="event.preventDefault(); alert('Thanks! This is a demo form for now.');">
+            <div class="form-grid">
+              <input class="field" type="text" name="firstName" placeholder="First Name" required>
+              <input class="field" type="text" name="lastName" placeholder="Last Name" required>
+
+              <input class="field full" type="tel" name="phone" placeholder="Contact Number">
+              <input class="field full" type="email" name="email" placeholder="Email Address" required>
+
+              <textarea class="textarea full" name="message" placeholder="Message" required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Send Message</button>
+              <button class="btn btn-ghost" type="reset">Clear</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-wrap">
+
+      <div>
+        <div class="follow-row">
+          <div class="follow-title">Follow us...</div>
+
+          <div class="social" aria-label="Social links">
+            <a class="icon-btn" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.5 1.6-1.5h1.7V5.1c-.3 0-1.3-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.6V11H7.3v3h2.5v8h3.7z"/></svg>
+            </a>
+            <a class="icon-btn" href="#" aria-label="X">
+              <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.4-8.5L1.1 2h6.3l4.4 5.8L18.9 2zm-2.2 18h1.7L7.2 4H5.4l11.3 16z"/></svg>
+            </a>
+            <a class="icon-btn" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 18 6.2z"/></svg>
+            </a>
+            <a class="icon-btn" href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M6.5 6.5A2.5 2.5 0 1 1 6.5 1.5a2.5 2.5 0 0 1 0 5zM2 22V8h5v14H2zm7.5 0V8h4.8v2c.7-1.2 2.3-2.3 4.6-2.3 4.9 0 5.8 3.2 5.8 7.3V22h-5v-6.1c0-1.5 0-3.4-2.1-3.4-2.1 0-2.4 1.6-2.4 3.3V22h-5z"/></svg>
+            </a>
+          </div>
+
+          <div class="stars" aria-label="Trustpilot rating">
+            <div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6L22 9.3l-5 4.4 1.5 7-6.5-3.8-6.5 3.8 1.5-7-5-4.4 7.1-0.7L12 2z"/></svg></div>
+            <div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6L22 9.3l-5 4.4 1.5 7-6.5-3.8-6.5 3.8 1.5-7-5-4.4 7.1-0.7L12 2z"/></svg></div>
+            <div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6L22 9.3l-5 4.4 1.5 7-6.5-3.8-6.5 3.8 1.5-7-5-4.4 7.1-0.7L12 2z"/></svg></div>
+            <div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6L22 9.3l-5 4.4 1.5 7-6.5-3.8-6.5 3.8 1.5-7-5-4.4 7.1-0.7L12 2z"/></svg></div>
+            <div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6L22 9.3l-5 4.4 1.5 7-6.5-3.8-6.5 3.8 1.5-7-5-4.4 7.1-0.7L12 2z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="footer-copy">
+          Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA).<br/>
+          Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.
+        </div>
+
+        <div class="footer-links">
+          <a href="#">View Terms</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Complaints Policy</a>
+          <a href="#">Slavery Statement</a>
+        </div>
+      </div>
+
+      <div class="group-image-link">
+        <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener noreferrer">
+          <img src="grouplogo.png" alt="Lloyd Group Companies">
+        </a>
+      </div>
+
+    </div>
+
+    <div class="copyright">© 2026 Lloyd &amp; Co. Financial Planning Ltd.</div>
+  </footer>
+
+</body>
+</html>

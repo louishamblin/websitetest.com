@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Login | Lloyd & Co Financial Planning</title>
+
+<style>
+:root{
+  --green-dark:#1f4f49;
+  --green:#245c55;
+  --cream:#efe4c7;
+  --cream-light:#f6edd7;
+  --text:#0c2f2b;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,#1f4f49,#2b6a63);
+  color:var(--text);
+}
+
+/* ================= HEADER ================= */
+header{
+  background:linear-gradient(0deg,#1b4742,#1f4f49);
+  padding:18px 0;
+}
+
+.container{
+  width:min(1200px,92%);
+  margin:auto;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand img{
+  height:50px;
+}
+
+.back-btn{
+  border:2px solid #fff;
+  padding:10px 22px;
+  border-radius:30px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.back-btn:hover{
+  background:#fff;
+  color:var(--green-dark);
+}
+
+/* ================= LOGIN ================= */
+.login-wrapper{
+  padding:100px 0;
+}
+
+.login-card{
+  background:var(--cream);
+  border-radius:30px;
+  padding:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 30px 60px rgba(0,0,0,0.3);
+}
+
+.login-left{
+  background:var(--cream-light);
+  padding:50px;
+  border-radius:30px;
+  width:55%;
+}
+
+.login-left h1{
+  font-size:3rem;
+  margin-bottom:30px;
+  color:var(--green-dark);
+}
+
+.login-left input{
+  width:100%;
+  padding:16px;
+  margin-bottom:20px;
+  border-radius:14px;
+  border:2px solid #2c5f58;
+  font-size:1rem;
+}
+
+.login-left button{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  background:var(--green-dark);
+  color:#fff;
+  font-size:1.1rem;
+  font-weight:bold;
+  cursor:pointer;
+  margin-bottom:20px;
+}
+
+.login-left button:hover{
+  background:#163a36;
+}
+
+.login-left a{
+  text-decoration:none;
+  font-weight:bold;
+  color:var(--green-dark);
+}
+
+.login-right img{
+  width:460px; /* Large squirrel */
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:linear-gradient(180deg,#1f4f49,#17413c);
+  color:#fff;
+  padding:60px 0 30px;
+  margin-top:80px;
+}
+
+.footer-wrap{
+  width:min(1200px,92%);
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:40px;
+}
+
+.footer-left{
+  max-width:600px;
+}
+
+.follow-title{
+  font-size:1.4rem;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.social{
+  display:flex;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#2c5f58;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
+
+.icon-btn svg{
+  fill:#fff;
+  width:20px;
+}
+
+.footer-left p{
+  font-size:0.9rem;
+  line-height:1.6;
+  margin-bottom:8px;
+}
+
+.footer-right img{
+  width:240px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.footer-right img:hover{
+  transform:scale(1.05);
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:50px;
+  font-size:0.85rem;
+  opacity:0.85;
+}
+
+@media(max-width:900px){
+  .login-card{
+    flex-direction:column;
+    text-align:center;
+  }
+  .login-left{
+    width:100%;
+    margin-bottom:40px;
+  }
+  .login-right img{
+    width:320px;
+  }
+  .footer-wrap{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <a href="index.html">
+        <img src="fpweb.png" alt="Lloyd & Co Financial Planning">
+      </a>
+    </div>
+    <a href="index.html" class="back-btn">Back to Home</a>
+  </div>
+</header>
+
+<section class="login-wrapper">
+  <div class="container">
+    <div class="login-card">
+
+      <div class="login-left">
+        <h1>CLIENT LOGIN</h1>
+        <input type="email" placeholder="Email Address">
+        <input type="password" placeholder="Password">
+        <button>LOG IN</button>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <div class="login-right">
+        <img src="squirrel.png" alt="Lloyd & Co Mascot">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+
+    <div class="footer-left">
+      <div class="follow-title">Follow us...</div>
+
+      <div class="social">
+        <a class="icon-btn" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.5 1.6-1.5h1.7V5.1c-.3 0-1.3-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.6V11H7.3v3h2.5v8h3.7z"/></svg>
+        </a>
+        <a class="icon-btn" href="#" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.4L6.3 22H3.2l7.4-8.5L1.1 2h6.3l4.4 5.8L18.9 2z"/></svg>
+        </a>
+        <a class="icon-btn" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z"/></svg>
+        </a>
+        <a class="icon-btn" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M6 9H3v12h3V9zM4.5 3A1.75 1.75 0 104.5 6.5 1.75 1.75 0 004.5 3zM21 21h-3v-6c0-1.5-.5-2.5-1.9-2.5S14 13.5 14 15v6h-3V9h3v1.7A3.3 3.3 0 0117 9c2.3 0 4 1.5 4 4.7V21z"/></svg>
+        </a>
+      </div>
+
+      <p>Lloyd & Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+      <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+    </div>
+
+    <div class="footer-right">
+      <a href="https://www.lloydgrp.co.uk/" target="_blank">
+        <img src="grouplogo.png" alt="The Lloyd Group">
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Lloyd & Co. Financial Planning Ltd.
+  </div>
+</footer>
+
+</body>
+</html>

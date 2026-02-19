@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Journey | Lloyd & Co. Financial Planning</title>
+
+  <style>
+    :root{
+      --green-900:#1f4f49;
+      --green-850:#1b4742;
+      --green-800:#245a53;
+      --cream:#f5efe3;
+      --text:#0c2f2b;
+      --white:#ffffff;
+      --shadow:0 18px 50px rgba(0,0,0,.18);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--cream);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px,92vw);margin:0 auto}
+
+    /* HEADER */
+    header{
+      background:linear-gradient(0deg,var(--green-850),var(--green-900));
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:50;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
+    }
+    .topbar{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:18px;
+      align-items:center;
+      padding:14px 0;
+    }
+    .brand img{height:56px;width:auto;display:block}
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:26px;
+      justify-content:center;
+      margin:0;
+      padding:0;
+      font-weight:850;
+      align-items:center;
+    }
+    nav a{
+      padding:10px 12px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+    nav a:hover{background:rgba(255,255,255,.12)}
+
+    /* DROPDOWN (About Us) */
+    .nav-item{position:relative}
+    .drop-trigger{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .caret{font-size:.9em; opacity:.9}
+    .dropdown{
+      position:absolute;
+      top:calc(100% + 10px);
+      left:50%;
+      transform:translateX(-50%) translateY(-6px);
+      min-width:260px;
+      background:#f2ede2;
+      color:var(--text);
+      border-radius:16px;
+      box-shadow:0 18px 50px rgba(0,0,0,.18);
+      border:1px solid rgba(0,0,0,.08);
+      padding:10px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
+    }
+    .dropdown a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:800;
+    }
+    .dropdown a:hover{background:rgba(31,79,73,.10)}
+
+    .btn-login{
+      border:2px solid rgba(255,255,255,.65);
+      background:transparent;
+      color:#fff;
+      border-radius:999px;
+      padding:10px 18px;
+      font-weight:950;
+      white-space:nowrap;
+    }
+    .btn-login:hover{border-color:#fff}
+
+    /* PAGE */
+    main{padding:40px 0 70px}
+    .page-title{
+      text-align:center;
+      font-weight:950;
+      font-size:clamp(2rem,3.6vw,3rem);
+      color:#0d3b34;
+      margin:14px 0 26px;
+    }
+
+    /* YOUR JOURNEY BANNER (image) */
+    .journey-banner{
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#0f3b35;
+      border:1px solid rgba(0,0,0,.10);
+    }
+    .journey-banner img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* JOURNEY CAROUSEL WRAP */
+    .journey-wrap{
+      margin-top:26px;
+      background:linear-gradient(135deg, rgba(31,79,73,.95), rgba(22,61,56,.98));
+      border-radius:28px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* top step tabs */
+    .steps-row{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .journey-steps{
+      display:flex;
+      gap:14px;
+      flex:1 1 auto;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .step{
+      appearance:none;
+      border:2px solid rgba(255,255,255,.55);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:22px;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:230px;
+      cursor:pointer;
+      transition:transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .step:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.75)}
+    .step.active{
+      background:rgba(255,255,255,.16);
+      border-color:rgba(255,255,255,.9);
+    }
+
+    /* ICONS (images instead of numbers for 1 & 2) */
+    .step-icon{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      background:rgba(255,255,255,.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .step-icon img{
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      display:block;
+    }
+    .step-title{
+      font-weight:950;
+      font-size:1.05rem;
+      letter-spacing:.2px;
+    }
+
+    .nav-arrows{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:flex-end;
+      flex:0 0 auto;
+    }
+    .arrow{
+      width:56px;height:56px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.55);
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      font-size:1.6rem;
+      font-weight:950;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:background .16s ease,border-color .16s ease, transform .16s ease;
+    }
+    .arrow:hover{background:rgba(255,255,255,.16); border-color:rgba(255,255,255,.85); transform:translateY(-1px)}
+    .arrow:active{transform:translateY(0)}
+
+    /* slide panel */
+    .slide{
+      margin-top:18px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:26px;
+      padding:28px 26px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:center;
+      min-height:320px;
+    }
+
+    .slide h2{
+      margin:0 0 4px;
+      font-size:2.2rem;
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .slide .sub{
+      margin:0 0 18px;
+      font-weight:850;
+      opacity:.9;
+      font-size:1.12rem;
+    }
+    .slide p{
+      margin:0 0 14px;
+      line-height:1.7;
+      font-weight:700;
+      opacity:.95;
+      max-width:720px;
+    }
+    .slide p:last-child{margin-bottom:0}
+
+    .slide-media{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .slide-media img{
+      width:min(360px, 92%);
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.25));
+    }
+
+    /* FOOTER */
+    footer{
+      background:linear-gradient(135deg,#1f4f49,#163d38);
+      color:#fff;
+      padding:58px 0 20px;
+      margin-top:70px;
+    }
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:40px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .footer-left h3{
+      margin:0 0 14px;
+      font-weight:950;
+      font-size:1.7rem;
+    }
+    .socials{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      margin:8px 0 16px;
+    }
+    .socials a{
+      width:36px;height:36px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:950;
+    }
+    .socials a:hover{background:rgba(255,255,255,.16)}
+    .footer-left p{
+      margin:8px 0;
+      opacity:.9;
+      line-height:1.6;
+      font-weight:650;
+      max-width:620px;
+    }
+    .footer-right a{display:inline-block}
+    .footer-right img{width:260px;height:auto;display:block}
+    .footer-bottom{
+      text-align:center;
+      margin-top:36px;
+      font-weight:750;
+      opacity:.85;
+    }
+
+    @media (max-width: 980px){
+      .topbar{grid-template-columns:1fr auto; grid-template-areas:"brand login" "nav nav";}
+      .brand{grid-area:brand}
+      nav{grid-area:nav}
+      .btn-login{grid-area:login}
+      nav ul{justify-content:flex-start; overflow:auto; padding-bottom:6px}
+      .slide{grid-template-columns:1fr; text-align:left}
+      .slide-media img{width:min(380px, 96%)}
+      .step{min-width: 210px}
+    }
+
+    @media (max-width: 520px){
+      .step{min-width: 100%}
+      .nav-arrows{width:100%; justify-content:center}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <a href="index.html"><img src="fpweb.png" alt="Lloyd & Co. Financial Planning"></a>
+      </div>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li class="nav-item">
+            <a class="drop-trigger" href="about.html">About Us <span class="caret">▼</span></a>
+            <div class="dropdown" role="menu" aria-label="About menu">
+              <a href="about.html">About Lloyd &amp; Co</a>
+              <a href="ourteam.html">Our Team</a>
+              <a href="technology.html">Our Technology</a>
+              <a href="careers.html">Careers at Lloyd &amp; Co</a>
+              <a href="contact.html">Contact Us</a>
+            </div>
+          </li>
+          <li><a href="journey.html">The Journey</a></li>
+          <li><a href="mind.html">The Mind</a></li>
+          <li><a href="money.html">The Money</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn-login" href="clientlogin.html">Client Login</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">The Journey</div>
+
+      <!-- Banner image (you already use this on other pages) -->
+      <div class="journey-banner">
+        <img src="yourjourney.png" alt="Your Journey">
+      </div>
+
+      <!-- Carousel / timeline -->
+      <section class="journey-wrap" aria-label="Journey steps">
+        <div class="steps-row">
+          <div class="journey-steps" role="tablist" aria-label="Journey navigation">
+            <button class="step active" type="button" data-step="0" role="tab" aria-selected="true">
+              <span class="step-icon"><img src="nuttydesk.png" alt="Current"></span>
+              <span class="step-title">Current</span>
+            </button>
+
+            <button class="step" type="button" data-step="1" role="tab" aria-selected="false">
+              <span class="step-icon"><img src="nuttyquestions.png" alt="Conviction"></span>
+              <span class="step-title">Conviction</span>
+            </button>
+
+            <button class="step" type="button" data-step="2" role="tab" aria-selected="false">
+              <span class="step-icon" aria-hidden="true">3</span>
+              <span class="step-title">Create</span>
+            </button>
+
+            <button class="step" type="button" data-step="3" role="tab" aria-selected="false">
+              <span class="step-icon" aria-hidden="true">4</span>
+              <span class="step-title">Challenge</span>
+            </button>
+
+            <button class="step" type="button" data-step="4" role="tab" aria-selected="false">
+              <span class="step-icon" aria-hidden="true">5</span>
+              <span class="step-title">Change</span>
+            </button>
+          </div>
+
+          <div class="nav-arrows" aria-label="Step controls">
+            <button class="arrow" type="button" id="prevStep" aria-label="Previous">‹</button>
+            <button class="arrow" type="button" id="nextStep" aria-label="Next">›</button>
+          </div>
+        </div>
+
+        <div class="slide" id="slidePanel" role="tabpanel" aria-live="polite">
+          <div>
+            <h2 id="slideTitle">Current</h2>
+            <div class="sub" id="slideSub">Reality clarity</div>
+            <p id="slideP1">
+              Stop, get everything out on the table. Where are you now? How did you get here? Which way are you facing?
+            </p>
+            <p id="slideP2">
+              Establish exactly where you are. Agree which way is forward so you can move with purpose.
+            </p>
+          </div>
+
+          <div class="slide-media">
+            <img id="slideImg" src="nuttydesk.png" alt="Nutty at desk">
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <h3>Follow us...</h3>
+        <div class="socials" aria-label="Social links">
+          <!-- Replace # with your real links whenever you want -->
+          <a href="#" onclick="event.preventDefault();" aria-label="Facebook">f</a>
+          <a href="#" onclick="event.preventDefault();" aria-label="Twitter/X">x</a>
+          <a href="#" onclick="event.preventDefault();" aria-label="Instagram">⌁</a>
+          <a href="#" onclick="event.preventDefault();" aria-label="LinkedIn">in</a>
+        </div>
+
+        <p>Lloyd &amp; Co. Financial Planning is authorised and regulated by the Financial Conduct Authority (FCA) No. 548625.</p>
+        <p>Registered Office: 26 Hoghton Street, Southport, Merseyside, PR9 0PA.</p>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://www.lloydgrp.co.uk/" target="_blank" rel="noopener">
+          <img src="grouplogo.png" alt="Lloyd Group">
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 Lloyd &amp; Co. Financial Planning Ltd.</div>
+  </footer>
+
+  <script>
+    const steps = [
+      {
+        title: "Current",
+        sub: "Reality clarity",
+        p1: "Stop, get everything out on the table. Where are you now? How did you get here? Which way are you facing?",
+        p2: "Establish exactly where you are. Agree which way is forward so you can move with purpose.",
+        img: "nuttydesk.png",
+        imgAlt: "Nutty at desk"
+      },
+      {
+        title: "Conviction",
+        sub: "For the future reality",
+        p1: "What? Why? When?",
+        p2: "What do you really, we mean really want. What would a 10 out of 10 life look like? You need to be so clear on this that you can taste it.",
+        img: "nuttyquestions.png",
+        imgAlt: "Nutty thinking"
+      },
+      {
+        title: "Create",
+        sub: "Life design & asset crafting",
+        p1: "Establish an intertwined plan to get the money and the mind to the goal of delivering the best life achievable.",
+        p2: "",
+        img: "planning.png",
+        imgAlt: "Nutty at planning"
+      },
+      {
+        title: "Challenge",
+        sub: "Review everything always",
+        p1: "Small tweaks or big changes, keep on track to get to the dreams, targets objectives, goals as quickly as possible.",
+        p2: "",
+        img: "nuttydesk.png",
+        imgAlt: "Nutty at desk"
+      },
+      {
+        title: "Change",
+        sub: "Embrace and adapt",
+        p1: "Change outside of your control is coming. Personally or worldly, change is coming.",
+        p2: "No idea what or when but it’s coming. Embrace it, adapt to it.",
+        img: "nuttydesk.png",
+        imgAlt: "Nutty at desk"
+      }
+    ];
+
+    const tabButtons = Array.from(document.querySelectorAll(".step"));
+    const prevBtn = document.getElementById("prevStep");
+    const nextBtn = document.getElementById("nextStep");
+
+    const slideTitle = document.getElementById("slideTitle");
+    const slideSub   = document.getElementById("slideSub");
+    const slideP1    = document.getElementById("slideP1");
+    const slideP2    = document.getElementById("slideP2");
+    const slideImg   = document.getElementById("slideImg");
+
+    let current = 0;
+
+    function setActive(idx){
+      current = idx;
+
+      tabButtons.forEach((btn, i)=>{
+        const active = i === idx;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-selected", active ? "true" : "false");
+      });
+
+      const s = steps[idx];
+      slideTitle.textContent = s.title;
+      slideSub.textContent   = s.sub;
+      slideP1.textContent    = s.p1;
+      slideP2.textContent    = s.p2 || "";
+      slideP2.style.display  = s.p2 ? "block" : "none";
+
+      slideImg.src = s.img;
+      slideImg.alt = s.imgAlt || s.title;
+    }
+
+    tabButtons.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const idx = parseInt(btn.dataset.step, 10);
+        if(!Number.isNaN(idx)) setActive(idx);
+      });
+    });
+
+    prevBtn.addEventListener("click", ()=>{
+      setActive((current - 1 + steps.length) % steps.length);
+    });
+    nextBtn.addEventListener("click", ()=>{
+      setActive((current + 1) % steps.length);
+    });
+
+    // Keyboard support
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "ArrowLeft") prevBtn.click();
+      if(e.key === "ArrowRight") nextBtn.click();
+    });
+  </script>
+</body>
+</html>
